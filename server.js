@@ -192,7 +192,6 @@ const books = [
 Book.insertMany(books)
   .then(() => {
     console.log('Books successfully saved!');
-    // mongoose.disconnect();
   })
   .catch((error) => {
     console.error('Something went wrong:', error);

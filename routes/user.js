@@ -5,6 +5,8 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
+
+// Register a user with username and password properties.
 /**
  * @swagger
  * /users/register:
@@ -42,6 +44,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Logs the user in and returns a JWT token.
 /**
  * @swagger
  * /users/login:
@@ -85,6 +88,7 @@ router.post("/login", async (req, res) => {
   res.send({ token });
 });
 
+// Return user's authorized informations.
 /**
  * @swagger
  * /users/me:

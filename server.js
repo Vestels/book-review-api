@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const Book = require('./models/Book');
 
 const corsOptions = {
   origin: 'http://localhost:4200',
@@ -134,6 +135,68 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => console.log("MongoDB connected"))
   .catch((error) => console.log("MongoDB connection error:", error));
+
+const books = [
+  {
+    "title": "Az idő rövid története",
+    "author": "Stephen Hawking",
+    "description": "Ez a könyv a világegyetem keletkezéséről és fejlődéséről szól."
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "description": "Egy disztópikus jövőben játszódó regény, amely a totális kontrollt és a manipulációt mutatja be."
+  },
+  {
+    "title": "A szépség és a szörnyeteg",
+    "author": "Gabrielle-Suzanne Barbot de Villeneuve",
+    "description": "A klasszikus mese a szeretetről és a belső szépségről."
+  },
+  {
+    "title": "A Harry Potter és a bölcsek köve",
+    "author": "J.K. Rowling",
+    "description": "Harry Potter kalandjainak első könyve, amely bemutatja a varázslók világát."
+  },
+  {
+    "title": "A Kisherceg",
+    "author": "Antoine de Saint-Exupéry",
+    "description": "Egy különleges kisfiú története, aki a Földre látogat."
+  },
+  {
+    "title": "Az emberi butaság",
+    "author": "Rudyard Kipling",
+    "description": "Ez a könyv az emberi hibákról és butaságról szól."
+  },
+  {
+    "title": "A dzsungel könyve",
+    "author": "Rudyard Kipling",
+    "description": "Maugli, a dzsungelben felnőtt kisfiú kalandjait meséli el."
+  },
+  {
+    "title": "A gyűrűk ura: A gyűrű szövetsége",
+    "author": "J.R.R. Tolkien",
+    "description": "A híres fantasy regény első része, amelyben a Gyűrű megsemmisítése a cél."
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "description": "A társadalmi osztályokról és a szerelemről szóló klasszikus regény."
+  },
+  {
+    "title": "Mester és Margarita",
+    "author": "Mihail Bulgakov",
+    "description": "Egy misztikus történet, amely Moszkvát és a Sátánt érinti."
+  }
+];
+
+Book.insertMany(books)
+  .then(() => {
+    console.log('Books successfully saved!');
+    // mongoose.disconnect();
+  })
+  .catch((error) => {
+    console.error('Something went wrong:', error);
+  });
 
 // API routes
 app.use("/users", userRoutes);

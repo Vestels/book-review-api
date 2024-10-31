@@ -1,12 +1,20 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
+
+const corsOptions = {
+    origin: 'http://localhost:4200',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
 
 const userRoutes = require("./routes/user");
 const bookRoutes = require("./routes/book");
 const reviewRoutes = require("./routes/review");
 
 const app = express();
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // MongoDB kapcsolódás

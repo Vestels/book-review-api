@@ -1,6 +1,6 @@
 <ins>A kicsomagolás után terminálból ezeket futtassuk:</ins>
 
-    - cd <path>/api-project
+    - cd <path>/book-review-api-1.0.0
     - npm install
     - npm start
     

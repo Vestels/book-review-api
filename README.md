@@ -1,19 +1,19 @@
-A kicsomagolás után terminálból ezeket futtassuk:
+<ins>A kicsomagolás után terminálból ezeket futtassuk:</ins>
 
-    - cd <path>/api-project  // <path>: A kicsomagolt fájl elérési útvonala //
+    - cd <path>/api-project
     - npm install
-    - npm install express mongoose bcryptjs jsonwebtoken dotenv swagger-jsdoc swagger-ui-express cors // Ha az *npm install* nem telepített mindent megfelelően a dependeciák szerint //
-    -npm start
+    - npm start
+    
 
-Sikeres futtatás esetén ezt kapjuk vissza:
-    Server is running on port 3000
-    MongoDB connected
+**Ha az -npm install nem telepített mindent megfelelően a dependeciák szerint.**
 
-Ezután a project a http://localhost:3000 -en elérhető és tesztelhető (pl.: POSTMAN).
-SWAGGER dokumentáció a projekthez a http://localhost:3000/api-docs -on érhető el és tesztelhető.
+    - npm install express mongoose bcryptjs jsonwebtoken dotenv swagger-jsdoc swagger-ui-express cors 
+      
+      
+**Sikeres futtatás esetén:**</br>
+    </br>- http://localhost:3000 (pl.: Postman)</br>
+    - Swagger dokumentáció: http://localhost:3000/api-docs
 
-Az authentikált végpontok csak a sikeres bejelentkezés után generált JWT token-el fognak működni.
-    - POSTMAN: Sikeres bejelentkezést követően a visszakapott JWT tokent másoljuk be ide -> Authorization -> Bearer Token -> Token.
-    - SWAGGER: Sikeres bejelentkezést követően a visszakapott JWT tokent felül az Authorize-ba másoljuk be majd Authorize.
+</br>**Az authentikált végpontok csak a sikeres bejelentkezés után generált JWT token-el fognak működni.**
 
-// A regisztrációhoz szükséges felhasználói adatoknak legalább 10/10 karakter hosszúnak kell legyenek. //
+*A regisztrációhoz szükséges felhasználói adatoknak legalább 10/10 karakter hosszúnak kell legyenek.

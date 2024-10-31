@@ -20,10 +20,10 @@ const router = express.Router();
  *             properties:
  *               username:
  *                 type: string
- *                 example: "john_doe"
+ *                 example: "teszt_user48"
  *               password:
  *                 type: string
- *                 example: "mypassword123"
+ *                 example: "mypassword537"
  *     responses:
  *       201:
  *         description: User registered successfully
@@ -57,10 +57,10 @@ router.post("/register", async (req, res) => {
  *             properties:
  *               username:
  *                 type: string
- *                 example: "john_doe"
+ *                 example: "teszt_user48"
  *               password:
  *                 type: string
- *                 example: "mypassword123"
+ *                 example: "mypassword537"
  *     responses:
  *       200:
  *         description: Successful login, returns a JWT token
@@ -106,7 +106,7 @@ router.post("/login", async (req, res) => {
  *                   example: "603e5b3f4f1a2e001f6e8b88"
  *                 username:
  *                   type: string
- *                   example: "john_doe"
+ *                   example: "teszt_user48"
  *       401:
  *         description: Unauthorized, invalid or missing token
  */

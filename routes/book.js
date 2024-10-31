@@ -4,6 +4,7 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
+// Creates a book with the requested properties.
 /**
  * @swagger
  * /books:
@@ -47,6 +48,7 @@ router.post("/", auth, async (req, res) => {
     res.status(201).json(book);
   });
 
+// Returns a list of all books.
 /**
  * @swagger
  * /books:
@@ -68,6 +70,7 @@ router.get("/", async (req, res) => {
   res.json(books);
 });
 
+// Returns one book by an ID.
 /**
  * @swagger
  * /books/{id}:
@@ -97,6 +100,7 @@ router.get("/:id", async (req, res) => {
     res.json(book);
   });
 
+// Updates a book property/ies by an ID.
 /**
  * @swagger
  * /books/{id}:
@@ -144,6 +148,7 @@ router.patch("/:id", auth, async (req, res) => {
   res.json(book);
 });
 
+// Deletes one book by an ID.
 /**
  * @swagger
  * /books/{id}:

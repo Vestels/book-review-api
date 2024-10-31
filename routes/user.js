@@ -5,6 +5,31 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /users/register:
+ *   post:
+ *     summary: Registers a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "john_doe"
+ *               password:
+ *                 type: string
+ *                 example: "mypassword123"
+ *     responses:
+ *       201:
+ *         description: User registered successfully
+ *       400:
+ *         description: Error registering user
+ */
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -17,6 +42,39 @@ router.post("/register", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /users/login:
+ *   post:
+ *     summary: Logs in a user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: "john_doe"
+ *               password:
+ *                 type: string
+ *                 example: "mypassword123"
+ *     responses:
+ *       200:
+ *         description: Successful login, returns a JWT token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+ *       400:
+ *         description: Invalid username or password
+ */
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
@@ -27,6 +85,31 @@ router.post("/login", async (req, res) => {
   res.send({ token });
 });
 
+/**
+ * @swagger
+ * /users/me:
+ *   get:
+ *     summary: Retrieves authenticated user's information
+ *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User information retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: "603e5b3f4f1a2e001f6e8b88"
+ *                 username:
+ *                   type: string
+ *                   example: "john_doe"
+ *       401:
+ *         description: Unauthorized, invalid or missing token
+ */
 router.get("/me", auth, async (req, res) => {
   const user = await User.findById(req.user._id);
   res.send(user);

@@ -5,6 +5,7 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
+// Creates a review for a book.
 /**
  * @swagger
  * /books/{bookId}/reviews:
@@ -60,6 +61,7 @@ router.post("/:bookId/reviews", auth, async (req, res) => {
   });
   await review.save();
 
+  // Updates the avarage of the book's rating.
   const reviews = await Review.find({ book: bookId });
   book.averageRating = reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length;
   await book.save();
@@ -67,6 +69,7 @@ router.post("/:bookId/reviews", auth, async (req, res) => {
   res.status(201).send(review);
 });
 
+// Retrieves all ratings of a book.
 /**
  * @swagger
  * /books/{bookId}/reviews:
@@ -97,6 +100,7 @@ router.get("/:bookId/reviews", async (req, res) => {
   res.send(reviews);
 });
 
+// Updates review by an ID.
 /**
  * @swagger
  * /books/reviews/{id}:
@@ -146,6 +150,7 @@ router.patch("/reviews/:id", auth, async (req, res) => {
   res.send(review);
 });
 
+// Deletes a review by an ID.
 /**
  * @swagger
  * /books/reviews/{id}:

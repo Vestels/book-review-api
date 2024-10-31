@@ -130,17 +130,17 @@ app.use(express.json());
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// MongoDB kapcsolódás
+// MongoDB connect
 mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => console.log("MongoDB connected"))
   .catch((error) => console.log("MongoDB connection error:", error));
 
-// API útvonalak
+// API routes
 app.use("/users", userRoutes);
 app.use("/books", bookRoutes);
 app.use("/books", reviewRoutes);
 
-// Szerver indítása
+// Server start
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
